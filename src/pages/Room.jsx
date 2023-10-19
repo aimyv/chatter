@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import client, { databases, DATABASE_ID, COLLECTION_ID_MESSAGES } from '../appwriteConfig'
 import { ID, Query } from 'appwrite'
 import { Trash2 } from 'react-feather'
+import Header from '../components/Header'
 
 const Room = () => {
 
@@ -66,9 +67,8 @@ const Room = () => {
 
     return (
         <main className='container'>
+            <Header />
             <div className='room--container'>
-                <h1>Chatter</h1>
-                <br />
                 <form id='message--form' onSubmit={handleSubmit}>
                     <div>
                         <textarea required maxLength='1000' placeholder='Write a message' onChange={(e) => {
