@@ -5,7 +5,6 @@
 :root{
     --mainBgColor:rgba(20,20,31,11);
     --secondaryBgColor:rgba(27,27,39,1);
-    /* --borderColor1:rgba(40,41,57,1); */
     --borderColor1:rgb(147, 190, 176);
     --borderColor2:rgba(79,86,105,1);
     --textColorMain:#fff;
@@ -42,6 +41,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.border {
+    border:1px solid var(--themeColorSecondary);
+    border-radius: 10px;
+    padding: 20px 30px 30px 30px;
+    box-shadow: 10px 10px var(--themeColorSecondary);
+    transition: 0.3s;
+    background-color: var(--secondaryBgColor);;
+}
+
+.border:hover {
+    box-shadow: none;
+    transition: 0.3s;
 }
 
 .form--wrapper{
@@ -56,8 +70,6 @@ body {
     gap: 1em;
     padding: 0.5em 0;
 }
-
-
 
 /* Form Input Styling */
 
@@ -105,7 +117,6 @@ input[type="text"], input[type="password"], input[type="email"], textarea{
 /* Header Styling */
 
 #header--wrapper{
-    background-color: var(--mainBgColor);
     padding: 1em;
     display: flex;
     justify-content: space-between;
@@ -115,7 +126,7 @@ input[type="text"], input[type="password"], input[type="email"], textarea{
 }
 
 .header--link{
-    color: #c7d8eb;
+    color: white;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -135,6 +146,7 @@ input[type="text"], input[type="password"], input[type="email"], textarea{
 
 h1 {
     text-align: center;
+    color: #55cd4c;
 }
 
 #message--form{

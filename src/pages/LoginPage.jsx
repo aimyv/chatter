@@ -26,36 +26,41 @@ const LoginPage = () => {
 
     return (
         <div className='auth--container'>
-            <div className='form-wrapper'>
-                <form onSubmit={(e) =>  {handleUserLogin(e, credentials)}}>
-                    <div className='field--wrapper'>
-                        <label>Email:</label>
-                        <input type='email' 
-                        required 
-                        name='email' 
-                        placeholder='Enter your email'
-                        value={credentials.email}
-                        onChange={handleInputChange} />
-                    </div>
+            <div className='border'>
+                <h1>Login</h1>
+                <br />
+                <div className='form-wrapper'>
+                    <form onSubmit={(e) =>  {handleUserLogin(e, credentials)}}>
+                        <div className='field--wrapper'>
+                            <label>Email:</label>
+                            <input type='email' 
+                            required 
+                            name='email' 
+                            placeholder='Enter your email'
+                            value={credentials.email}
+                            onChange={handleInputChange} />
+                        </div>
 
-                    <div className='field--wrapper'>
-                        <label>Password:</label>
-                        <input type='password' 
-                        required 
-                        name='password' 
-                        placeholder='Enter your password'
-                        value={credentials.password}
-                        onChange={handleInputChange} />
-                    </div>
+                        <div className='field--wrapper'>
+                            <label>Password:</label>
+                            <input type='password' 
+                            required 
+                            name='password' 
+                            placeholder='Enter your password'
+                            value={credentials.password}
+                            onChange={handleInputChange} />
+                        </div>
 
-                    <div  className='field--wrapper'>
-                        <input className='btn btn--lg btn--main' 
-                        type='submit'
-                        value='Login'  />
-                    </div>
-                </form>
+                        <div  className='field--wrapper'>
+                            <input className='btn btn--lg btn--main' 
+                            type='submit'
+                            value='Login'  />
+                        </div>
+                    </form>
 
-                <p>Don't have an account yet? Register <Link to='/register'>here</Link></p>
+                    <br />
+                    <p>Don't have an account yet? Register <Link to='/register'>here</Link></p>
+                </div>
             </div>
         </div>
     )
