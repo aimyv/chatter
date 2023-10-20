@@ -175,7 +175,7 @@ h1 {
     background-color: var(--secondaryBgColor);
 }
 
-.message-timestamp{
+.message--timestamp{
     margin-left: 1em;
     color: rgb(164, 161, 161);
 }

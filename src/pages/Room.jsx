@@ -3,8 +3,11 @@ import client, { databases, DATABASE_ID, COLLECTION_ID_MESSAGES } from '../appwr
 import { ID, Query } from 'appwrite'
 import { Trash2 } from 'react-feather'
 import Header from '../components/Header'
+import { userAuth } from '../utils/AuthContext'
 
 const Room = () => {
+
+    const { user } = userAuth()
 
     const [messages, setMessages] = useState([])
     const [messageBody, setMessageBody] = useState('')
@@ -35,6 +38,8 @@ const Room = () => {
         e.preventDefault()
 
         let payload = {
+            user_id: user.$id,
+            username: user.name,
             body: messageBody
         }
 
@@ -85,7 +90,15 @@ const Room = () => {
                     {messages.map(message => (
                         <div key={message.$id} className='message--wrapper'>
                             <div className='message--header'>
-                                <small className='message--timestamp'>{new Date(message.$createdAt).toLocaleString().substr(0, 17)}</small>
+                                <p>
+                                    { message?.username ? (
+                                        <span>{message.username}</span>
+                                    ) : (
+                                        <span><em>anonymous</em></span>
+                                    )}
+                                    
+                                    <small className='message--timestamp'>{new Date(message.$createdAt).toLocaleString().substr(0, 17)}</small>
+                                </p>
                                 <Trash2 className='delete--btn' onClick={() => {deleteMessage(message.$id)}}/>
                             </div>
 
