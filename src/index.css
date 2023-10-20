@@ -10,8 +10,8 @@
     --borderColor2:rgba(79,86,105,1);
     --textColorMain:#fff;
     --textColorSecondary:rgb(226, 227, 232);
-    --themeColorMain:rgb(90, 143, 107);
-    --themeColorSecondary:rgb(147, 190, 176);
+    --themeColorMain:rgb(92, 111, 104);
+    --themeColorSecondary:rgb(90, 143, 107);
 }
 
 * {
@@ -162,19 +162,31 @@ h1 {
     align-items: center;
 }
 
+.message--header--owner{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .message--body{
-    padding: 0.75em ;
+    padding: 0.75em;
     color: var(--textColorSecondary);
     background-color: var(--themeColorMain);
     border-radius: 10px 10px 10px 0;
     width: fit-content;
     max-width: 100%;
-    word-wrap: break-word; /* added */
+    word-wrap: break-word;
 }
 
 .message--body--owner{
-    border: 1px solid rgba(219,26,90,1);
-    background-color: var(--secondaryBgColor);
+    padding: 0.75em ;
+    color: var(--textColorSecondary);
+    background-color: var(--themeColorSecondary);
+    border-radius: 10px 10px 0 10px;
+    width: fit-content;
+    max-width: 100%;
+    word-wrap: break-word;
+    align-self: flex-end;
 }
 
 .message--timestamp{
@@ -182,11 +194,17 @@ h1 {
     color: rgb(164, 161, 161);
 }
 
+.message--timestamp--owner{
+    color: rgb(164, 161, 161);
+    align-self: flex-end;
+}
+
 .delete--btn{
     color: #82d97c;
     cursor: pointer;
     transition: 0.3s;
     width: 16px;
+    align-self: flex-end;
 }
 
 .delete--btn:hover{

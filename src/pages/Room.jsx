@@ -94,24 +94,37 @@ const Room = () => {
                 <div>
                     {messages.map(message => (
                         <div key={message.$id} className='message--wrapper'>
-                            <div className='message--header'>
-                                <p>
-                                    { message?.username ? (
-                                        <span>{message.username}</span>
-                                    ) : (
-                                        <span><em>anonymous</em></span>
-                                    )}
-                                    
-                                    <small className='message--timestamp'>{new Date(message.$createdAt).toLocaleString().substr(0, 17)}</small>
-                                </p>
+                            {message.$permissions.includes(`delete(\"user:${user.$id}\")`) ? (
+                                <>
+                                    <div className='message--header--owner'>
+                                        <small className='message--timestamp--owner'>{new Date(message.$createdAt).toLocaleString().substr(0, 17)}</small>
+                                    </div>
 
-                                {message.$permissions.includes(`delete(\"user:${user.$id}\")`) && (<Trash2 className='delete--btn' onClick={() => {deleteMessage(message.$id)}}/>)}
+                                    <div className='message--body--owner'>
+                                        <span>{message.body}</span>
+                                    </div>
 
-                            </div>
+                                    {message.$permissions.includes(`delete(\"user:${user.$id}\")`) && (<Trash2 className='delete--btn' onClick={() => {deleteMessage(message.$id)}}/>)}
+                                </>
+                            ) : (
+                                <>
+                                    <div className='message--header'>
+                                    <p>
+                                        { message?.username ? (
+                                            <span>{message.username}</span>
+                                        ) : (
+                                            <span><em>anonymous</em></span>
+                                        )}
+                                        
+                                        <small className='message--timestamp'>{new Date(message.$createdAt).toLocaleString().substr(0, 17)}</small>
+                                    </p>
 
-                            <div className='message--body'>
-                                <span>{message.body}</span>
-                            </div>
+                                    </div>
+                                    <div className='message--body'>
+                                        <span>{message.body}</span>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     ))}
                 </div>
