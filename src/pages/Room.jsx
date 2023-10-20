@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import client, { databases, DATABASE_ID, COLLECTION_ID_MESSAGES } from '../appwriteConfig'
-import { ID, Query } from 'appwrite'
+import { ID, Query, Role, Permission } from 'appwrite'
 import { Trash2 } from 'react-feather'
 import Header from '../components/Header'
 import { userAuth } from '../utils/AuthContext'
@@ -43,11 +43,16 @@ const Room = () => {
             body: messageBody
         }
 
+        let permissions = [
+            Permission.write(Role.user(user.$id))
+        ]
+
         let response = await databases.createDocument(
             DATABASE_ID,
             COLLECTION_ID_MESSAGES,
             ID.unique(),
-            payload
+            payload,
+            permissions
         )
         console.log('Created:', response)
         // setMessages(prevState => [response, ...messages])
@@ -99,7 +104,9 @@ const Room = () => {
                                     
                                     <small className='message--timestamp'>{new Date(message.$createdAt).toLocaleString().substr(0, 17)}</small>
                                 </p>
-                                <Trash2 className='delete--btn' onClick={() => {deleteMessage(message.$id)}}/>
+
+                                {message.$permissions.includes(`delete(\"user:${user.$id}\")`) && (<Trash2 className='delete--btn' onClick={() => {deleteMessage(message.$id)}}/>)}
+
                             </div>
 
                             <div className='message--body'>
